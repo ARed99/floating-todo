@@ -5,7 +5,7 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.277);
         border-radius: 8px;
         z-index: 10000;
-        padding: 15px;
+        padding: 5px;
         font-family: Arial, sans-serif;
         transition: all 0.2s ease;
 }
@@ -76,9 +76,8 @@
         padding: 8px 0;
         border-bottom: 1px solid #eee;
         color: black;
-        word-break: break-all;
+        word-break: normal;
         word-wrap: break-word;
-        width: 250px;
 }
 
 .todo-item.completed span {
@@ -98,6 +97,7 @@
         background: none;
         border: none;
         padding: 4px 8px;
+        font-size: 16px;
 }
 
 .drag-handle {
@@ -142,8 +142,9 @@
                 0.5
         ); /* Add a semi-transparent background */
         border-radius: 8px; /* Optional: rounded corners */
-        padding: 16px; /* Optional: spacing */
+        padding: 6px; /* Optional: spacing */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+        width: 250px;
 }
 
 .edit-input {
@@ -151,10 +152,11 @@
         padding: 10px;
         word-break: normal;
         resize: none;
-
-        min-height: fit-content; /* Set minimum height for the input area */
         max-height: 300px; /* Maximum height, adjust based on your needs */
         opacity: 0; /* Hide initially for fade-in effect */
+        background-color: white;
+        color: black;
+        margin-left: 5px;
 }
 .todo-text,
 .edit-input {
@@ -179,4 +181,14 @@
 }
 .todo-list::-webkit-scrollbar {
         display: none;
+}
+
+.todo-link {
+        color: rgb(31, 129, 216);
+        font-size: 16px;
+        padding: 0%;
+}
+.todo-text {
+        margin: 0%;
+        margin-left: 5px;
 }

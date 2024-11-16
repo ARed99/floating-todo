@@ -1,8 +1,8 @@
 {
         "manifest_version": 3,
-        "name": "Floating Todo List",
-        "version": "1.0",
-        "description": "A floating todo list that persists across web pages",
+        "name": "Floating Todo App",
+        "version": "1.1",
+        "description": "A floating todo app that persists across web pages",
         "permissions": ["storage", "tabs"],
 
         "background": {
@@ -20,7 +20,7 @@
         "content_scripts": [
                 {
                         "matches": ["<all_urls>"],
-                        "js": ["content.js"],
+                        "js": ["consts.js", "content.js"],
                         "css": ["styles.css"]
                 }
         ],

@@ -10,7 +10,8 @@ class TodoApp {
                 };
                 this.isMinimized = false;
                 this.syncing = false;
-
+                this.footer = true;
+                this.app = APP;
                 this.init();
                 this.setupSyncListeners();
         }
@@ -68,19 +69,12 @@ class TodoApp {
                         header.className = 'todo-header';
 
                         // Create the header content using template literals
-                        header.innerHTML = `
-            <span class="drag-handle no-select">☰</span>
-            <div class="logo-container no-select">
-              <span class="logo-text" >Floating Todo</span>    
-                <div class="minimize-btn">[ - ]</div> 
-            </div>
-          
-        `;
+                        header.innerHTML = this.app.header.html;
 
                         // Create the footer
                         const footer = document.createElement('div');
                         footer.className = 'footer';
-                        footer.innerHTML = `<a href="https://ared.dev" target="_blank">Made By Ared</a>`;
+                        footer.innerHTML = this.app.footer.html;
 
                         // Create the input field for adding new todos
                         this.input = document.createElement('input');
@@ -95,7 +89,9 @@ class TodoApp {
                         this.container.appendChild(header);
                         this.container.appendChild(this.input);
                         this.container.appendChild(this.todoList);
-                        this.container.appendChild(footer);
+                        if (this.footer) {
+                                this.container.appendChild(footer);
+                        }
 
                         // Add the container to the body of the document
                         document.body.appendChild(this.container);
@@ -208,6 +204,7 @@ class TodoApp {
         async addTodo(text) {
                 this.todos.push({ id: Date.now(), text, completed: false });
                 await this.saveAndSync();
+                this.todoList.scrollTop = this.todoList.scrollHeight + 48; // scroll to the added element
         }
 
         async toggleTodo(id) {
@@ -289,7 +286,7 @@ class TodoApp {
                 this.render();
         }
 
-        cutTextToMaxWords(text, wordLimit = 50) {
+        cutTextToMaxWords(text, wordLimit = 20) {
                 const words = text.trim().split(/\s+/);
 
                 if (words.length > wordLimit) {
@@ -309,7 +306,7 @@ class TodoApp {
                                         );
                                         todoText = this.cutTextToMaxWords(todoText); // cut words to 200 rate limit
                                         todoText = this.isValidUrl(todoText)
-                                                ? `<a href="${todoText}" target="_blank" rel="noopener noreferrer">${this.escapeHtml(
+                                                ? `<a class="todo-link" href="${todoText}" target="_blank" rel="noopener noreferrer">${this.escapeHtml(
                                                           todoText,
                                                   )}</a>`
                                                 : this.escapeHtml(todoText);
