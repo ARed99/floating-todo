@@ -1,9 +1,9 @@
 {
         "manifest_version": 3,
         "name": "Floating Todo App",
-        "version": "1.1",
+        "version": "1.2",
         "description": "A floating todo app that persists across web pages",
-        "permissions": ["storage", "tabs"],
+        "permissions": ["storage"],
 
         "background": {
                 "service_worker": "background.js"
